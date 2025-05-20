@@ -1,65 +1,21 @@
 const Table = require('../models/Table');
 
-exports.createTable = async (req, res) => {
+exports.create = async (req, res) => {
   try {
-    const table = new Table(req.body);
-    await table.save();
+    const table = await Table.create(req.body);
     res.status(201).json(table);
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
 };
 
-exports.getAllTables = async (req, res) => {
+exports.getAll = async (req, res) => {
   try {
-    const tables = await Table.find();
+    const tables = await Table.find().sort({ number: 1 });
     res.json(tables);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 };
 
-exports.getTableById = async (req, res) => {
-  try {
-    const table = await Table.findById(req.params.id);
-    if (!table) {
-      return res.status(404).json({ error: 'Table not found' });
-    }
-    res.json(table);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-};
-
-exports.getTablesByStatus = async (req, res) => {
-  try {
-    const tables = await Table.find({ status: req.params.status });
-    res.json(tables);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-};
-
-exports.updateTable = async (req, res) => {
-  try {
-    const table = await Table.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    if (!table) {
-      return res.status(404).json({ error: 'Table not found' });
-    }
-    res.json(table);
-  } catch (err) {
-    res.status(400).json({ error: err.message });
-  }
-};
-
-exports.deleteTable = async (req, res) => {
-  try {
-    const table = await Table.findByIdAndDelete(req.params.id);
-    if (!table) {
-      return res.status(404).json({ error: 'Table not found' });
-    }
-    res.json({ message: 'Table deleted successfully' });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-};
+// Adicione update, delete, getById seguindo o mesmo padrão
