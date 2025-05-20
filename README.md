@@ -17,4 +17,8 @@ Foi um grande desafio implementar a lógica de negócio para garantir a consist�
 
 Confira o código no GitHub: [link do repositório]
 
+<<<<<<< HEAD
 #NodeJS #ExpressJS #MongoDB #BackendDevelopment #RestaurantManagement
+=======
+#NodeJS #ExpressJS #MongoDB #BackendDevelopment #RestaurantManagement
+>>>>>>> 1bc6e940adfe9a41c1e060d263c3410b8937f376
